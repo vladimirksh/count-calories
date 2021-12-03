@@ -1,17 +1,20 @@
 import React from 'react';
-import './AppContainer.css';
+import './Diary.css';
 import FoodAdder from '../FoodAdder/FoodAdder';
 
-
-function AppContainer() {
+function Diary() {
   return (
-    <div className="container">
+    <div className="diary">
       <div className="calories">
         <h2>Калории:</h2>
+        <ul className="calories__list">
+          <li>360</li>
+          <li>120</li>
+        </ul>
       </div>
       <FoodAdder />
     </div>
   );
 }
 
-export default AppContainer;
+export default Diary;
