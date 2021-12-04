@@ -3,7 +3,7 @@ import './App.css';
 import Header from '../Header/Header';
 import Diary from '../Diary/Diary';
 import Tips from '../Tips/Tips';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 
 
