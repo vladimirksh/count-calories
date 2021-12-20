@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css';
+import { Link, withRouter } from 'react-router-dom';
+import * as auth from '../auth.js';
+import './styles/Login.css';
 
 class Login extends React.Component {
   constructor(props){
@@ -21,7 +22,19 @@ class Login extends React.Component {
   }
   handleSubmit(e){
     e.preventDefault();
-    // здесь обрабатываем вход в систему
+    if (!this.state.username || !this.state.password){
+      return;
+    }
+    auth.authorize(this.state.username, this.state.password)
+    .then((data) => {
+      if (data.jwt){
+        this.setState({email: '', password: ''} ,() => {
+        this.props.handleLogin(data.user.ru_cal_goal.calGoal);
+        this.props.history.push('/diary');
+        })
+      }
+    })
+    .catch(err => console.log(err));
   }
   render(){
     return(
@@ -39,9 +52,10 @@ class Login extends React.Component {
           </label>
           <input required id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
           <div className="login__button-container">
-            <button type="submit" className="login__link">Войти</button>
+            <button type="submit" onSubmit={this.handleSubmit} className="login__link">Войти</button>
           </div>
         </form>
+
         <div className="login__signup">
           <p>Ещё не зарегистрированы?</p>
           <Link to="/register" className="signup__link">Зарегистрироваться</Link>
@@ -51,4 +65,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
