@@ -28,7 +28,7 @@ class Login extends React.Component {
     auth.authorize(this.state.username, this.state.password)
     .then((data) => {
       if (data.jwt){
-        this.setState({email: '', password: ''} ,() => {
+        this.setState({email: '', password: ''}, () => {
         this.props.handleLogin(data.user.ru_cal_goal.calGoal);
         this.props.history.push('/diary');
         })

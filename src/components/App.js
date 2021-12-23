@@ -60,7 +60,7 @@ class App extends React.Component {
       <>
       <Header />
       <main className="content">
-        {this.state.loggedIn && <NavBar />}
+        {localStorage.jwt && <NavBar/>}
         <Switch>
           <ProtectedRoute path="/diary" loggedIn={this.state.loggedIn} calGoal={this.state.calGoal} component={Diary} />
           <ProtectedRoute path="/tips" loggedIn={this.state.loggedIn} component={Tips} />
