@@ -64,12 +64,14 @@ class App extends React.Component {
         <Switch>
           <ProtectedRoute path="/diary" loggedIn={this.state.loggedIn} calGoal={this.state.calGoal} component={Diary} />
           <ProtectedRoute path="/tips" loggedIn={this.state.loggedIn} component={Tips} />
+
           <Route path="/register">
             <Register />
           </Route>
           <Route path="/login">
             <Login handleLogin={this.handleLogin} />
           </Route>
+          
           <Route exact path="/">
             {this.state.loggedIn ? <Redirect to="/diary" /> : <Redirect to="/login" />}
           </Route>
